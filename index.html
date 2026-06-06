@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REC-OIL — Recycling Used Cooking Oil for a Greener Tomorrow</title>
+<meta name="description" content="REC-OIL connects vendors and recyclers of used cooking oil with fair, transparent pricing — cutting out the exploitative middleman for a greener tomorrow.">
+
+<!-- Favicon (from the leaf logo) -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Social share preview (WhatsApp / LinkedIn / etc.)
+     NOTE: replace the URL below with your real GitHub Pages address once live,
+     e.g. https://yourname.github.io/rec-oil/ -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="REC-OIL — Recycling Used Cooking Oil for a Greener Tomorrow">
+<meta property="og:description" content="Connecting vendors, recyclers & the planet — profitably. The smart middleman, cutting out the old one.">
+<meta property="og:image" content="https://USERNAME.github.io/rec-oil/og-image.png">
+<meta property="og:url" content="https://USERNAME.github.io/rec-oil/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="REC-OIL — Recycling Used Cooking Oil for a Greener Tomorrow">
+<meta name="twitter:description" content="Connecting vendors, recyclers & the planet — profitably.">
+<meta name="twitter:image" content="https://USERNAME.github.io/rec-oil/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0f3d24;
+    --green:#175c34;
+    --green-mid:#1c7a44;
+    --emerald:#2ea05a;
+    --green-light:#eef5ee;
+    --green-mist:#f5faf4;
+    --amber:#e8a324;
+    --amber-soft:#f6c243;
+    --gold:#caa11c;
+    --white:#ffffff;
+    --ink:#16241c;
+    --muted:#5d6e64;
+    --blue:#2f6bd6;
+    --rust:#c0531f;
+    --red:#d23b3b;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 18px 50px -18px rgba(15,61,36,.35);
+    --shadow-soft:0 10px 30px -12px rgba(15,61,36,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{font-family:var(--sans);color:var(--ink);line-height:1.65;background:var(--white);overflow-x:hidden;}
+  h1,h2,h3{font-family:var(--serif);line-height:1.1;font-weight:600;letter-spacing:-.01em;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:1140px;margin:0 auto;padding:0 26px;}
+  section{position:relative;padding:110px 0;}
+  .eyebrow{font-family:var(--sans);font-weight:700;text-transform:uppercase;letter-spacing:.18em;
+           font-size:.8rem;color:var(--amber);margin-bottom:14px;display:block;}
+  .section-head{max-width:680px;margin:0 auto 64px;text-align:center;}
+  .section-head h2{font-size:clamp(2rem,4.5vw,3.2rem);}
+  .section-head .lede{color:var(--muted);font-size:1.12rem;margin-top:14px;font-style:italic;font-family:var(--serif);}
+  .on-dark .section-head .lede{color:#cfe2d5;}
+  .on-dark .eyebrow{color:var(--amber-soft);}
+
+  /* ---- reveal animation ---- */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .reveal.d1{transition-delay:.08s;}
+  .reveal.d2{transition-delay:.16s;}
+  .reveal.d3{transition-delay:.24s;}
+  .reveal.d4{transition-delay:.32s;}
+  .reveal.d5{transition-delay:.40s;}
+
+  /* ---------- Nav ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .35s ease,box-shadow .35s ease,height .35s ease;}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;transition:height .35s ease;}
+  header.nav.scrolled{background:rgba(15,61,36,.92);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(0,0,0,.18);}
+  header.nav.scrolled .nav .wrap{height:64px;}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--sans);font-weight:800;letter-spacing:.5px;color:var(--amber-soft);font-size:1.3rem;}
+  .brand .leaf{width:30px;height:30px;}
+  .nav-links{display:flex;gap:30px;list-style:none;}
+  .nav-links a{color:#e7f1e9;font-size:.95rem;font-weight:600;position:relative;padding:4px 0;}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--amber-soft);transition:width .25s ease;}
+  .nav-links a:hover{color:var(--amber-soft);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-toggle{display:none;background:none;border:0;color:var(--amber-soft);font-size:1.7rem;cursor:pointer;line-height:1;}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:100vh;display:flex;align-items:center;color:var(--white);
+        background:radial-gradient(120% 120% at 80% 10%,#2ea05a 0%,#175c34 42%,#0f3d24 100%);
+        position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;inset:0;opacity:.06;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .orb{position:absolute;border-radius:50%;filter:blur(2px);}
+  .orb.a{width:540px;height:540px;top:-160px;right:-120px;background:radial-gradient(circle,rgba(255,255,255,.10),transparent 70%);animation:drift 16s ease-in-out infinite;}
+  .orb.b{width:420px;height:420px;bottom:-180px;left:-120px;background:radial-gradient(circle,rgba(46,160,90,.5),transparent 70%);animation:drift 20s ease-in-out infinite reverse;}
+  @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(28px,-26px)}}
+  .drop{position:absolute;right:9%;top:50%;width:240px;transform:translateY(-50%);
+        filter:drop-shadow(0 24px 40px rgba(0,0,0,.3));animation:bob 5.5s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(calc(-50% - 10px))}50%{transform:translateY(calc(-50% + 10px))}}
+  .hero-content{position:relative;z-index:3;max-width:680px;}
+  .hero h1{font-size:clamp(2.4rem,6.4vw,4.6rem);font-weight:600;}
+  .hero h1 em{font-style:italic;color:var(--amber-soft);font-weight:500;}
+  .hero .sub{font-size:clamp(1.05rem,2.3vw,1.4rem);color:#d9ecdf;margin-top:22px;font-family:var(--serif);font-style:italic;}
+  .hero-tag{margin-top:34px;display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);
+            border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);
+            color:#fff;font-weight:600;padding:11px 22px;border-radius:40px;font-size:.92rem;}
+  .hero-tag .dot{width:9px;height:9px;border-radius:50%;background:var(--amber-soft);box-shadow:0 0 0 0 rgba(246,194,67,.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(246,194,67,.6)}70%{box-shadow:0 0 0 12px rgba(246,194,67,0)}100%{box-shadow:0 0 0 0 rgba(246,194,67,0)}}
+  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:#cfe2d5;
+             font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;text-align:center;}
+  .scrollcue .chev{font-size:1.4rem;animation:cue 1.8s ease-in-out infinite;}
+  @keyframes cue{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(7px);opacity:1}}
+
+  /* ---------- curved dividers ---------- */
+  .wave{position:absolute;left:0;width:100%;line-height:0;z-index:2;}
+  .wave svg{width:100%;height:70px;display:block;}
+  .wave.top{top:-1px;}
+  .wave.bottom{bottom:-1px;}
+
+  /* ---------- icon badge ---------- */
+  .badge{width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;
+         font-size:1.8rem;margin-bottom:20px;box-shadow:var(--shadow-soft);}
+  .badge.green{background:linear-gradient(135deg,#2ea05a,#0f3d24);}
+  .badge.amber{background:linear-gradient(135deg,#f6c243,#caa11c);}
+  .badge.blue{background:linear-gradient(135deg,#4f8bf0,#2f6bd6);}
+  .badge.rust{background:linear-gradient(135deg,#e0793f,#a8430f);}
+
+  /* ---------- cards ---------- */
+  .grid{display:grid;gap:26px;perspective:1100px;}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  .card{background:var(--white);border:1px solid #e7ede8;border-radius:20px;padding:36px 30px;
+        box-shadow:var(--shadow-soft);transition:transform .3s ease,box-shadow .3s ease;}
+  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow);}
+  .card h3{font-size:1.35rem;margin-bottom:12px;color:var(--green-deep);}
+  .card p{color:var(--muted);}
+  .stat-num{font-family:var(--serif);font-weight:700;font-size:2.6rem;color:var(--red);line-height:1;margin-bottom:6px;}
+  .stat-num.good{color:var(--green-mid);}
+
+  /* ---------- Problem ---------- */
+  .problem{background:linear-gradient(180deg,var(--green-mist),var(--green-light));}
+  .problem h2{color:var(--green-deep);}
+
+  /* ---------- Solution ---------- */
+  .solution{background:radial-gradient(120% 100% at 50% 0%,#1c7a44,#0f3d24);color:#fff;}
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:0;}
+  .node{border-radius:22px;padding:42px 26px;text-align:center;box-shadow:var(--shadow);}
+  .node h3{font-size:1.55rem;margin-bottom:10px;}
+  .node p{opacity:.92;}
+  .node .badge{margin:0 auto 18px;}
+  .node.vendors{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);}
+  .node.recoil{background:linear-gradient(135deg,#f6c243,#e8a324);color:var(--green-deep);transform:scale(1.07);
+               box-shadow:0 26px 60px -20px rgba(246,194,67,.6);}
+  .node.recoil h3{color:var(--green-deep);}
+  .node.recyclers{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);}
+  .flow .arrow{display:flex;align-items:center;justify-content:center;color:var(--amber-soft);font-size:1.9rem;padding:0 10px;animation:slidex 1.8s ease-in-out infinite;}
+  @keyframes slidex{0%,100%{transform:translateX(0);opacity:.55}50%{transform:translateX(6px);opacity:1}}
+  .solution .note{text-align:center;font-style:italic;margin-top:42px;color:#f0e1bd;font-family:var(--serif);font-size:1.15rem;}
+
+  /* ---------- Business ---------- */
+  .biz h2{color:var(--green-deep);}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:30px;}
+  .col{border-radius:20px;padding:34px 30px;border:1px solid;}
+  .col.old{background:#fdf1f1;border-color:#f3c9c9;}
+  .col.ours{background:#eef7f0;border-color:#cbe6d2;}
+  .col h3{font-size:1.2rem;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+  .col.old h3{color:var(--red);}
+  .col.ours h3{color:var(--green-mid);}
+  .row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-top:1px dashed rgba(0,0,0,.08);}
+  .row:first-of-type{border-top:0;}
+  .row .lab{color:var(--muted);font-size:.98rem;}
+  .row .val{font-family:var(--serif);font-weight:700;font-size:1.25rem;line-height:1.2;text-align:right;padding-left:16px;}
+  .col.old .val{color:var(--red);}
+  .col.ours .val{color:var(--green-mid);}
+  .model{background:linear-gradient(135deg,#0f3d24,#175c34);color:#fff;border-radius:20px;padding:34px 36px;box-shadow:var(--shadow);}
+  .model b{color:var(--amber-soft);}
+
+  /* ---------- Impact ---------- */
+  .impact{background:radial-gradient(120% 100% at 50% 0%,#1c7a44,#0f3d24);color:#fff;}
+  .impact .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);box-shadow:none;backdrop-filter:blur(4px);}
+  .impact .card:hover{background:rgba(255,255,255,.09);transform:translateY(-8px);}
+  .impact .card h3{color:#fff;}
+  .impact .card p{color:#d6e6db;}
+
+  /* ---------- Why ---------- */
+  .why{background:linear-gradient(180deg,var(--green-light),var(--green-mist));}
+  .why h2{color:var(--green-deep);}
+
+  /* ---------- Team ---------- */
+  .team{background:#fff;}
+  .team h2{color:var(--green-deep);}
+  .members{display:grid;grid-template-columns:repeat(5,1fr);gap:28px;}
+  .member{text-align:center;}
+  .avatar{width:140px;height:140px;border-radius:50%;margin:0 auto 16px;position:relative;
+          display:flex;align-items:center;justify-content:center;font-family:var(--serif);
+          font-size:2.1rem;font-weight:700;color:#fff;
+          background:linear-gradient(135deg,#2ea05a,#0f3d24);
+          box-shadow:0 0 0 4px #fff,0 0 0 7px var(--amber-soft),var(--shadow-soft);
+          transition:transform .3s ease;overflow:hidden;}
+  .member:hover .avatar{transform:translateY(-6px) scale(1.04);}
+  .avatar img{width:100%;height:100%;object-fit:cover;}
+  .member .name{font-weight:700;color:var(--green-deep);font-size:1.05rem;}
+
+  /* ---------- Closing summary ---------- */
+  .closing{background:radial-gradient(110% 120% at 50% 120%,#1c7a44,#0f3d24);color:#fff;text-align:center;overflow:hidden;}
+  .closing .bigdrop{position:absolute;right:-90px;bottom:-110px;width:380px;opacity:.16;}
+  .closing h2{font-size:clamp(2.1rem,5vw,3.4rem);}
+  .closing .sub{font-family:var(--serif);font-style:italic;color:var(--amber-soft);font-size:clamp(1.3rem,3vw,2rem);margin:6px 0 36px;}
+  .checks{list-style:none;display:inline-grid;grid-template-columns:repeat(2,auto);gap:16px 40px;text-align:left;margin:0 auto;}
+  .checks li{display:flex;align-items:center;gap:14px;font-size:1.12rem;}
+  .checks li .tick{width:30px;height:30px;border-radius:50%;background:var(--amber-soft);color:var(--green-deep);
+                   display:flex;align-items:center;justify-content:center;font-weight:800;flex:none;}
+  .closing .closer{margin-top:42px;color:#cfe2d5;font-family:var(--serif);font-style:italic;font-size:1.15rem;}
+
+  /* ---------- Footer ---------- */
+  footer{background:#0a2c1a;color:#8fa899;text-align:center;padding:46px 0;font-size:.9rem;}
+  .foot-brand{font-family:var(--sans);font-weight:800;letter-spacing:.5px;color:var(--amber-soft);font-size:1.25rem;margin-bottom:18px;}
+  .foot-contact{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+  .foot-contact a{display:inline-flex;align-items:center;gap:9px;color:#dce8df;font-weight:600;transition:color .2s ease;}
+  .foot-contact a svg{width:17px;height:17px;flex:none;}
+  .foot-contact a:hover{color:var(--amber-soft);}
+  .foot-copy{font-size:.85rem;opacity:.8;}
+
+  /* ---------- intro fade ---------- */
+  body{opacity:0;transition:opacity .6s ease;}
+  body.ready{opacity:1;}
+
+  /* ---------- scroll progress bar ---------- */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;
+            background:linear-gradient(90deg,#f6c243,#e8a324);box-shadow:0 0 10px rgba(246,194,67,.6);
+            transition:width .1s linear;}
+
+  /* ---------- active nav link ---------- */
+  .nav-links a.active{color:var(--amber-soft);}
+  .nav-links a.active::after{width:100%;}
+
+  /* ---------- hero rising bubbles ---------- */
+  .bubbles{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;}
+  .bubbles span{position:absolute;bottom:-60px;border-radius:50%;
+                background:radial-gradient(circle at 35% 30%,rgba(246,194,67,.55),rgba(246,194,67,.12) 60%,transparent 70%);
+                animation:rise linear infinite;}
+  @keyframes rise{
+    0%{transform:translateY(0) scale(.6);opacity:0;}
+    12%{opacity:.9;}
+    85%{opacity:.5;}
+    100%{transform:translateY(-105vh) scale(1.1);opacity:0;}
+  }
+
+  /* ---------- badge oil sheen ---------- */
+  .badge{position:relative;overflow:hidden;}
+  .badge::after{content:"";position:absolute;top:-30%;left:-20%;width:60%;height:80%;
+                background:radial-gradient(ellipse at center,rgba(255,255,255,.45),transparent 65%);
+                transform:rotate(-18deg);pointer-events:none;}
+
+  /* ---------- card tilt ---------- */
+  .card{will-change:transform;transform-style:preserve-3d;}
+
+  /* ---------- stat band ---------- */
+  .statband{background:linear-gradient(135deg,#f6c243,#e8a324);color:var(--green-deep);padding:70px 0;}
+  .statband .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center;}
+  .statband .item .n{font-family:var(--serif);font-weight:800;font-size:clamp(2.6rem,6vw,3.8rem);line-height:1;}
+  .statband .item .l{font-weight:700;margin-top:8px;letter-spacing:.02em;}
+  .statband .item .s{font-size:.95rem;opacity:.8;margin-top:2px;}
+  .statband .divline{position:absolute;}
+
+  /* ---------- gradient headings (#5) ---------- */
+  .problem h2,.biz h2,.why h2,.team h2{
+    background:linear-gradient(100deg,#2ea05a,#157038);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;}
+  .on-dark .section-head h2{
+    background:linear-gradient(100deg,#ffffff 40%,#f6c243);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;}
+  .hero h1 em{
+    background:linear-gradient(100deg,#f6c243,#e8a324);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;}
+
+  /* ---------- animated heading underline (#2) ---------- */
+  .section-head h2{position:relative;display:inline-block;padding-bottom:18px;}
+  .section-head h2::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+    height:4px;width:0;border-radius:3px;background:linear-gradient(90deg,#f6c243,#e8a324);
+    transition:width .7s cubic-bezier(.2,.7,.2,1) .35s;}
+  .section-head.in h2::after{width:68px;}
+
+  /* ---------- hero word reveal (#3) ---------- */
+  .hero h1 .w{display:inline-block;opacity:0;transform:translateY(32px);
+    animation:wordup .75s cubic-bezier(.2,.7,.2,1) forwards;}
+  @keyframes wordup{to{opacity:1;transform:none;}}
+
+  /* ---------- scroll-tied oil drop (#4) ---------- */
+  .scrolldrop{position:fixed;right:22px;bottom:22px;z-index:55;width:48px;
+    filter:drop-shadow(0 8px 16px rgba(0,0,0,.28));}
+  .scrolldrop svg{width:48px;height:auto;display:block;}
+
+  /* ---------- Reduced motion ---------- */
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none !important;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    .hero h1 .w{opacity:1 !important;transform:none !important;}
+    .section-head h2::after{transition:none;width:68px;}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:880px){
+    .nav-links{position:fixed;top:64px;left:0;right:0;background:rgba(15,61,36,.97);backdrop-filter:blur(10px);
+               flex-direction:column;gap:0;padding:6px 0;display:none;}
+    .nav-links.open{display:flex;}
+    .nav-links li{border-top:1px solid rgba(255,255,255,.08);}
+    .nav-links a{display:block;padding:15px 26px;}
+    .nav-toggle{display:block;}
+    .grid-3,.grid-2{grid-template-columns:1fr;}
+    .compare{grid-template-columns:1fr;}
+    .row{flex-direction:column;align-items:flex-start;gap:3px;}
+    .row .val{text-align:left;padding-left:0;font-size:1.4rem;}
+    .members{grid-template-columns:repeat(2,1fr);}
+    .flow{grid-template-columns:1fr;}
+    .node.recoil{transform:none;}
+    .flow .arrow{animation:none;transform:rotate(90deg);padding:14px 0;}
+    .drop{display:none;}
+    section{padding:80px 0;}
+    .checks{grid-template-columns:1fr;}
+    .statband .wrap{grid-template-columns:1fr;gap:36px;}
+    .scrolldrop{display:none;}
+  }
+  @media(max-width:480px){
+    .members{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- scroll-tied oil drop -->
+<div class="scrolldrop" id="scrolldrop" aria-hidden="true">
+  <svg viewBox="0 0 100 140">
+    <defs>
+      <clipPath id="dropclip"><path d="M50 0C50 0 10 55 10 90a40 40 0 0 0 80 0C90 55 50 0 50 0z"/></clipPath>
+      <linearGradient id="dropfill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6c243"/><stop offset="1" stop-color="#e8a324"/></linearGradient>
+    </defs>
+    <path d="M50 0C50 0 10 55 10 90a40 40 0 0 0 80 0C90 55 50 0 50 0z" fill="rgba(15,61,36,.15)" stroke="#0f3d24" stroke-width="3"/>
+    <rect id="droplevel" x="0" y="140" width="100" height="140" fill="url(#dropfill)" clip-path="url(#dropclip)"/>
+    <path d="M36 72a18 18 0 0 0 8 22" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".45"/>
+  </svg>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <svg class="leaf" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+      REC-OIL
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="menu">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#business">Business</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#team">Team</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div class="bubbles" id="bubbles"></div>
+  <svg class="drop" viewBox="0 0 100 140" fill="url(#g)"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6c243"/><stop offset="1" stop-color="#caa11c"/></linearGradient></defs><path d="M50 0C50 0 10 55 10 90a40 40 0 0 0 80 0C90 55 50 0 50 0z"/><path d="M36 72a18 18 0 0 0 8 22" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".55"/></svg>
+  <div class="wrap hero-content">
+    <h1><span class="w" style="animation-delay:0s">Recycling</span> <span class="w" style="animation-delay:.07s">Used</span> <span class="w" style="animation-delay:.14s">Cooking</span> <span class="w" style="animation-delay:.21s">Oil</span> <span class="w" style="animation-delay:.28s">for</span> <span class="w" style="animation-delay:.35s">a</span> <em class="w" style="animation-delay:.46s">Greener Tomorrow</em></h1>
+    <p class="sub reveal in d1">Connecting vendors, recyclers &amp; the planet — profitably.</p>
+    <div class="reveal in d2"><span class="hero-tag"><span class="dot"></span> The Smart Middleman — Cutting Out the Old Middleman</span></div>
+  </div>
+  <a href="#problem" class="scrollcue">Scroll<br><span class="chev">⌄</span></a>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="wave bottom"><svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="#175c34"><path d="M0,40 C360,90 1080,-10 1440,40 L1440,70 L0,70 Z"/></svg></div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Problem</span>
+      <h2>The Broken Supply Chain</h2>
+      <p class="lede">Why used cooking oil never reaches its true value.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal d1">
+        <div class="badge green">💵</div>
+        <div class="stat-num" data-count="40" data-prefix="₹" data-suffix="/L">₹40/L</div>
+        <h3>Vendor Exploitation</h3>
+        <p>Vendors sell used cooking oil at just ₹40/L to middlemen — far below its true market value.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="badge rust">⚖️</div>
+        <div class="stat-num" data-count="4000" data-prefix="₹" data-suffix="/L">₹4,000/L</div>
+        <h3>Unfair Markups</h3>
+        <p>Middlemen flip the same oil at ₹4,000/L to recyclers — a 100× markup with zero added value.</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="badge blue">🏭</div>
+        <div class="stat-num good" data-count="100" data-suffix="×">100×</div>
+        <h3>Inefficient Market</h3>
+        <p>Fragmented, unorganized, and lacking fair price discovery — the gap is pure exploitation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution on-dark" id="solution">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Solution</span>
+      <h2>The Fair, Transparent Middleman</h2>
+      <p class="lede">REC-OIL replaces exploitation with a direct, honest pipeline.</p>
+    </div>
+    <div class="flow">
+      <div class="node vendors reveal d1">
+        <div class="badge green">🏪</div>
+        <h3>Vendors</h3>
+        <p>Sell oil at a valuable, fair price</p>
+      </div>
+      <div class="arrow reveal d2">➜</div>
+      <div class="node recoil reveal d2">
+        <div class="badge amber">🍃</div>
+        <h3>REC-OIL</h3>
+        <p>Collect, aggregate &amp; facilitate</p>
+      </div>
+      <div class="arrow reveal d3">➜</div>
+      <div class="node recyclers reveal d3">
+        <div class="badge blue">♻️</div>
+        <h3>Recyclers</h3>
+        <p>Receive at a reasonable price</p>
+      </div>
+    </div>
+    <p class="note reveal d3">We remove the exploitative middleman and create a direct, fair pipeline.</p>
+  </div>
+</section>
+
+<!-- STAT BAND -->
+<section class="statband" id="stats" style="padding:70px 0;">
+  <div class="wrap">
+    <div class="item reveal d1">
+      <div class="n"><span data-count="100" data-suffix="×">100×</span></div>
+      <div class="l">Markup Eliminated</div>
+      <div class="s">from the old middleman's spread</div>
+    </div>
+    <div class="item reveal d2">
+      <div class="n"><span data-count="80" data-suffix="%">80%</span></div>
+      <div class="l">Lower Emissions</div>
+      <div class="s">biodiesel vs fossil diesel</div>
+    </div>
+    <div class="item reveal d3">
+      <div class="n"><span data-count="3" data-suffix="-step">3-step</span></div>
+      <div class="l">Fair Pipeline</div>
+      <div class="s">vendor → REC-OIL → recycler</div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS -->
+<section class="biz" id="business">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Business Model</span>
+      <h2>Buy Fair, Sell Reasonable</h2>
+      <p class="lede">We capture the spread the old middleman hoarded.</p>
+    </div>
+    <div class="compare">
+      <div class="col old reveal d1">
+        <h3>✖ The Old Middleman</h3>
+        <div class="row"><span class="lab">Buys from vendors at</span><span class="val">₹40/L</span></div>
+        <div class="row"><span class="lab">Sells to recyclers at</span><span class="val">₹4,000/L</span></div>
+        <div class="row"><span class="lab">Value added</span><span class="val">Zero</span></div>
+      </div>
+      <div class="col ours reveal d2">
+        <h3>✔ The REC-OIL Way</h3>
+        <div class="row"><span class="lab">Buys from vendors at</span><span class="val">Fair price</span></div>
+        <div class="row"><span class="lab">Sells to recyclers at</span><span class="val">Reasonable rate</span></div>
+        <div class="row"><span class="lab">Value added</span><span class="val">Trust &amp; logistics</span></div>
+      </div>
+    </div>
+    <div class="model reveal d2">
+      <p><b>REC-OIL Revenue Model:</b> Collect used oil from vendors at a fair, above-market rate → sell to biofuel &amp; recycling companies at a below-old-middleman rate → capture the significant spread as profit. <b>Win — Win — Win.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact on-dark" id="impact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Environmental Impact</span>
+      <h2>Every Litre Counts</h2>
+      <p class="lede">Each litre recycled is a step toward a cleaner planet.</p>
+    </div>
+    <div class="grid grid-2">
+      <div class="card reveal d1">
+        <div class="badge blue">🌊</div>
+        <h3>Prevents Water Pollution</h3>
+        <p>Used cooking oil dumped in drains contaminates water bodies. Recycling keeps thousands of litres out of rivers and groundwater.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="badge green">🌫️</div>
+        <div class="stat-num good" data-count="80" data-suffix="%">80%</div>
+        <h3>Reduces Carbon Emissions</h3>
+        <p>Biodiesel from recycled oil emits up to 80% fewer greenhouse gases than fossil diesel — directly combating climate change.</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="badge amber">🌱</div>
+        <h3>Promotes Circular Economy</h3>
+        <p>Transforms waste into fuel, closing the loop on resources and building a sustainable economic cycle.</p>
+      </div>
+      <div class="card reveal d4">
+        <div class="badge rust">💼</div>
+        <h3>Employment Generation</h3>
+        <p>Collection agents, logistics, quality testing, and coordination roles — REC-OIL creates jobs across the supply chain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why REC-OIL</span>
+      <h2>Built to Win an Open Market</h2>
+      <p class="lede">Six advantages that compound over time.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal d1"><div class="badge green">🤝</div><h3>Fair Pricing for Vendors</h3><p>We pay significantly more than the old middleman, building trust and securing long-term supply.</p></div>
+      <div class="card reveal d2"><div class="badge amber">📈</div><h3>Better Rates for Recyclers</h3><p>We undercut the exploitative old-middleman price — the preferred sourcing partner for recyclers.</p></div>
+      <div class="card reveal d3"><div class="badge blue">🔒</div><h3>Zero Competition</h3><p>The organized used cooking oil market is virtually non-existent — first movers with strong networks dominate.</p></div>
+      <div class="card reveal d1"><div class="badge rust">📍</div><h3>Local Network First</h3><p>Deep local roots — every vendor and recycler connection is a moat competitors cannot easily copy.</p></div>
+      <div class="card reveal d2"><div class="badge green">🍃</div><h3>ESG &amp; Regulation Tailwind</h3><p>Biofuel-blending mandates and ESG pressure on companies make our supply indispensable.</p></div>
+      <div class="card reveal d3"><div class="badge amber">🚀</div><h3>Scalable Model</h3><p>Works in any city. Master one market, replicate everywhere — no heavy infrastructure needed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Team</span>
+      <h2>The People Behind REC-OIL</h2>
+      <p class="lede">Driven students building a fairer, greener supply chain.</p>
+    </div>
+    <div class="members">
+      <div class="member reveal d1"><div class="avatar"><img src="https://res.cloudinary.com/db6assejb/image/upload/q_auto/f_auto/v1780765244/WhatsApp_Image_2026-06-06_at_22.27.29_wywoyn.jpg" alt="Ayaan Pareek" loading="lazy"></div><div class="name">Ayaan Pareek</div></div>
+      <div class="member reveal d2"><div class="avatar"><img src="https://res.cloudinary.com/db6assejb/image/upload/q_auto/f_auto/v1780765245/WhatsApp_Image_2026-06-06_at_22.27.30_1_bpk140.jpg" alt="Vedant Paliwal" loading="lazy"></div><div class="name">Vedant Paliwal</div></div>
+      <div class="member reveal d3"><div class="avatar"><img src="https://res.cloudinary.com/db6assejb/image/upload/q_auto/f_auto/v1780765244/WhatsApp_Image_2026-06-06_at_22.27.31_fg8wee.jpg" alt="Manas Sharma" loading="lazy" style="object-position:50% 22%;transform:scale(1.12);"></div><div class="name">Manas Sharma</div></div>
+      <div class="member reveal d4"><div class="avatar"><img src="https://res.cloudinary.com/db6assejb/image/upload/q_auto/f_auto/v1780765244/WhatsApp_Image_2026-06-06_at_22.27.30_2_hosulv.jpg" alt="Shashank Singh" loading="lazy" style="transform:scale(1.5);transform-origin:center 24%;"></div><div class="name">Shashank Singh</div></div>
+      <div class="member reveal d5"><div class="avatar"><img src="https://res.cloudinary.com/db6assejb/image/upload/q_auto/f_auto/v1780765245/WhatsApp_Image_2026-06-06_at_22.27.30_cne8v7.jpg" alt="Ashish Surelia" loading="lazy"></div><div class="name">Ashish Surelia</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING SUMMARY -->
+<section class="closing" id="closing">
+  <svg class="bigdrop" viewBox="0 0 100 140" fill="#f6c243"><path d="M50 0C50 0 10 55 10 90a40 40 0 0 0 80 0C90 55 50 0 50 0z"/></svg>
+  <div class="wrap">
+    <div class="reveal">
+      <h2>A Greener Tomorrow, Today</h2>
+      <p class="sub">Fair for everyone. Profitable for all.</p>
+    </div>
+    <ul class="checks reveal d1">
+      <li><span class="tick">✓</span> Fair prices for every vendor</li>
+      <li><span class="tick">✓</span> Better supply for every recycler</li>
+      <li><span class="tick">✓</span> Profit for REC-OIL at every step</li>
+      <li><span class="tick">✓</span> A greener planet for everyone</li>
+    </ul>
+    <p class="closer reveal d2">The market is open. The opportunity is now.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">
+      <svg class="leaf" viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px;vertical-align:-5px;"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+      <span>REC-OIL</span>
+    </div>
+    <div class="foot-contact">
+      <a href="mailto:recoilinspo@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        recoilinspo@gmail.com
+      </a>
+      <a href="tel:+919899597787">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +91 98995 97787
+      </a>
+    </div>
+    <div class="foot-copy">© <span id="yr"></span> REC-OIL · Recycling Used Cooking Oil for a Greener Tomorrow</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Sticky nav state
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 40); }
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Close mobile menu on link click
+  document.querySelectorAll('#menu a').forEach(function(a){
+    a.addEventListener('click', function(){ document.getElementById('menu').classList.remove('open'); });
+  });
+
+  // Scroll reveal
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ io.observe(el); });
+
+  // Count-up numbers
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var prefix = el.getAttribute('data-prefix') || '';
+    var suffix = el.getAttribute('data-suffix') || '';
+    var dur = 1400, start = null;
+    function fmt(n){ return n.toLocaleString('en-IN'); }
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      el.textContent = prefix + fmt(Math.round(target*eased)) + suffix;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var co = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ animateCount(e.target); co.unobserve(e.target); } });
+  }, {threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){ co.observe(el); });
+
+  // Intro fade-in
+  window.addEventListener('load', function(){ document.body.classList.add('ready'); });
+  setTimeout(function(){ document.body.classList.add('ready'); }, 400); // safety if load is slow
+
+  // Scroll progress bar + scroll-tied oil drop fill
+  var bar = document.getElementById('progress');
+  var droplevel = document.getElementById('droplevel');
+  function updateProgress(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) : 0;
+    bar.style.width = (p * 100) + '%';
+    if(droplevel){ droplevel.setAttribute('y', (140 * (1 - p)).toFixed(1)); }
+  }
+  updateProgress();
+  window.addEventListener('scroll', updateProgress, {passive:true});
+
+  // Active nav link based on section in view
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#menu a'));
+  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = '#' + e.target.id;
+        navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === id); });
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(function(s){ if(s) spy.observe(s); });
+
+  // Rising hero bubbles
+  var bubbles = document.getElementById('bubbles');
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(bubbles && !reduce){
+    for(var i=0;i<14;i++){
+      var b = document.createElement('span');
+      var size = 8 + Math.random()*26;
+      b.style.width = b.style.height = size + 'px';
+      b.style.left = Math.random()*100 + '%';
+      b.style.animationDuration = (7 + Math.random()*9) + 's';
+      b.style.animationDelay = (-Math.random()*12) + 's';
+      bubbles.appendChild(b);
+    }
+  }
+
+  // Subtle card tilt toward cursor (fine pointers only)
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches && !reduce){
+    document.querySelectorAll('.card').forEach(function(card){
+      card.addEventListener('pointermove', function(ev){
+        var r = card.getBoundingClientRect();
+        var px = (ev.clientX - r.left)/r.width - .5;
+        var py = (ev.clientY - r.top)/r.height - .5;
+        card.style.transform = 'translateY(-8px) rotateX(' + (-py*5) + 'deg) rotateY(' + (px*5) + 'deg)';
+      });
+      card.addEventListener('pointerleave', function(){ card.style.transform = ''; });
+    });
+  }
+</script>
+</body>
+</html>

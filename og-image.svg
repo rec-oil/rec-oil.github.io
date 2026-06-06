@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="bg" cx="80%" cy="12%" r="110%">
+      <stop offset="0" stop-color="#2ea05a"/>
+      <stop offset="45%" stop-color="#175c34"/>
+      <stop offset="100%" stop-color="#0f3d24"/>
+    </radialGradient>
+    <linearGradient id="drop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6c243"/>
+      <stop offset="1" stop-color="#caa11c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1080" cy="90" r="240" fill="#ffffff" opacity="0.05"/>
+  <circle cx="120" cy="560" r="200" fill="#2ea05a" opacity="0.18"/>
+
+  <!-- logo -->
+  <g transform="translate(90 86)">
+    <path fill="#f6c243" d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z" transform="scale(2.1)"/>
+    <text x="64" y="36" font-family="Georgia, serif" font-size="42" font-weight="700" fill="#f6c243" letter-spacing="2">REC-OIL</text>
+  </g>
+
+  <!-- oil drop -->
+  <g transform="translate(905 250)">
+    <path fill="url(#drop)" d="M100 0C100 0 20 110 20 180a80 80 0 0 0 160 0C180 110 100 0 100 0z"/>
+    <path d="M72 145a36 36 0 0 0 16 44" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- headline -->
+  <text x="92" y="300" font-family="Georgia, serif" font-size="74" font-weight="700" fill="#ffffff">Recycling Used</text>
+  <text x="92" y="384" font-family="Georgia, serif" font-size="74" font-weight="700" fill="#ffffff">Cooking Oil for a</text>
+  <text x="92" y="468" font-family="Georgia, serif" font-size="74" font-weight="700" font-style="italic" fill="#f6c243">Greener Tomorrow</text>
+
+  <text x="94" y="540" font-family="Helvetica, Arial, sans-serif" font-size="30" fill="#d9ecdf" font-style="italic">Connecting vendors, recyclers &amp; the planet — profitably.</text>
+</svg>
